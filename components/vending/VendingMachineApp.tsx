@@ -50,7 +50,14 @@ export default function VendingMachineApp() {
         )}
 
         <div className="flex-1 flex flex-col overflow-hidden relative">
-          {vm.currentScreen === 'screensaver' && <Screensaver timeLabel={formatSLSTTime(currentTime)} onStart={() => vm.setCurrentScreen('categories')} />}
+          {vm.currentScreen === 'screensaver' && (
+            <Screensaver
+              timeLabel={formatSLSTTime(currentTime)}
+              currentAdIndex={vm.currentAdIndex}
+              onAdEnd={() => vm.setCurrentAdIndex((prev) => (prev + 1) % 10)}
+              onStart={() => vm.setCurrentScreen('categories')}
+            />
+          )}
           {vm.currentScreen === 'categories' && <CategoryScreen onSelect={(screen) => vm.setCurrentScreen(screen)} />}
           {vm.currentScreen === 'snacks' && <ProductGrid items={INVENTORY.snacks} category={'snacks'} onBuy={vm.startPaymentFlow} />}
           {vm.currentScreen === 'coldDrinks' && <ProductGrid items={INVENTORY.coldDrinks} category={'coldDrinks'} onBuy={vm.startPaymentFlow} />}

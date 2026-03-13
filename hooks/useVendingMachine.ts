@@ -26,6 +26,7 @@ export const useVendingMachine = () => {
   const [dialedNumber, setDialedNumber] = useState('');
   const [phoneActive, setPhoneActive] = useState(false);
   const [callDuration, setCallDuration] = useState(0);
+  const [currentAdIndex, setCurrentAdIndex] = useState(0);
 
   const showToast = (message: string, type: ToastState['type'] = 'error') => setToast({ message, type });
 
@@ -166,6 +167,8 @@ export const useVendingMachine = () => {
     dialedNumber,
     phoneActive,
     callDurationLabel,
+    currentAdIndex,
+    setCurrentAdIndex,
     showToast,
     startPaymentFlow,
     handleInsertMoney,
